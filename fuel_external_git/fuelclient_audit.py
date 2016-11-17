@@ -94,9 +94,9 @@ class Audit(lister.Lister, command.Command):
 
         changes = filter(lambda c:
                          len(filter(lambda w: w['rule'] in c['resource'] and
-                                    (w['fuel_task'] == c['task_id'], wl or
-                                     w['fuel_task'] == '')) == 0,
-                         changes))
+                                    (w['fuel_task'] == c['task_id'] or
+                                     w['fuel_task'] == ''), wl)) == 0,
+                         changes)
 
         return changes
 
